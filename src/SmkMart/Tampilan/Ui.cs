@@ -96,8 +96,9 @@ public sealed class BilahPanel : FlowLayoutPanel
     protected override void OnControlAdded(ControlEventArgs e)
     {
         base.OnControlAdded(e);
-        e.Control.Anchor = AnchorStyles.Left;          // tanpa Top/Bottom = rata tengah vertikal
-        e.Control.Margin = new Padding(0, 0, 10, 0);
+        if (e.Control is not { } kontrol) return;
+        kontrol.Anchor = AnchorStyles.Left;
+        kontrol.Margin = new Padding(0, 0, 10, 0);
     }
 }
 

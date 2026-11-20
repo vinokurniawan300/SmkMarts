@@ -2,11 +2,11 @@
 ; Cara kompilasi lokal (Inno Setup 6):
 ;   1. dotnet publish src\SmkMart\SmkMart.csproj -c Release -r win-x64 --self-contained true -o publish
 ;   2. Buka file ini di Inno Setup Compiler lalu tekan Ctrl+F9
-;      atau: ISCC.exe /DMyAppVersion=1.0.0 installer\SmkMart.iss
+;      atau: ISCC.exe /DMyAppVersion=1.0.1 installer\SmkMart.iss
 ; Hasil: installer-output\SmkMart-Setup-<versi>.exe
 
 #ifndef MyAppVersion
-  #define MyAppVersion "1.0.0"
+  #define MyAppVersion "1.0.1"
 #endif
 #define MyAppName "SMK MART"
 #define MyAppExe "SmkMart.exe"
