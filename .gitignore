@@ -1,0 +1,23 @@
+## .NET / Visual Studio
+bin/
+obj/
+publish/
+.vs/
+*.user
+*.suo
+*.userprefs
+*.log
+
+## Rider / VS Code
+.idea/
+.vscode/
+
+## Data aplikasi (jangan ikut ter-commit: berisi password & transaksi)
+pengguna.txt
+barang.txt
+transaksi.txt
+detail_transaksi.txt
+barang_masuk.txt
+barang_keluar.txt
+data/
+installer-output/
