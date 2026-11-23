@@ -3,7 +3,7 @@ setlocal
 cd /d "%~dp0"
 title Buat Installer SMK MART
 
-set VERSI=1.0.2
+set VERSI=1.0.3
 if not "%~1"=="" set VERSI=%~1
 
 where dotnet >nul 2>nul

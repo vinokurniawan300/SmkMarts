@@ -24,6 +24,7 @@ Tambahan di versi GUI:
 
 ## Riwayat versi
 
+- **1.0.3** - Perbaikan tumpang tindih: judul tab terpotong dan teks ringkasan laporan tertimpa tabel di skala DPI besar.
 - **1.0.2** - Tampilan mengikuti DPI/skala layar (100%-300%, ganti monitor), jendela tidak melebihi area layar, menu login diperbesar.
 
 ## Akun bawaan (saat pertama kali dijalankan)
@@ -50,7 +51,7 @@ Atau buka `SmkMart.sln` di Visual Studio 2022 lalu tekan F5.
 
 Cara cepat di Windows: klik dua kali `BuatInstaller.bat` (otomatis publish + membuat Setup.exe di folder `installer-output`; Inno Setup dipasang lewat winget bila belum ada).
 
-Di GitHub: push tag, mis. `git tag v1.0.2 && git push origin v1.0.2`. GitHub Actions membuat `SmkMart-Setup-1.0.2.exe` di halaman Releases.
+Di GitHub: push tag, mis. `git tag v1.0.3 && git push origin v1.0.3`. GitHub Actions membuat `SmkMart-Setup-1.0.3.exe` di halaman Releases.
 
 Membuat versi rilis manual:
 

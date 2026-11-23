@@ -23,10 +23,10 @@ public class LaporanPanel : PanelDasar
     private readonly DateTimePicker _awalLaba = Pemilih();
     private readonly DateTimePicker _akhirLaba = Pemilih();
     private readonly DataGridView _gridLaba = Ui.BuatGrid();
-    private readonly Label _ringkasLaba = new() { Dock = DockStyle.Bottom, Height = 130, Font = new Font("Segoe UI", 11f, FontStyle.Bold), Padding = new Padding(8), UseMnemonic = false };
+    private readonly Label _ringkasLaba = new() { Dock = DockStyle.Bottom, AutoSize = true, MinimumSize = new Size(0, 130), Font = new Font("Segoe UI", 11f, FontStyle.Bold), Padding = new Padding(8), UseMnemonic = false };
     private readonly DataGridView _gridHarga = Ui.BuatGrid();
 
-    private readonly Label _ringkasStok = new() { Dock = DockStyle.Top, Height = 90, Font = new Font("Consolas", 10f), Padding = new Padding(4, 8, 4, 0), UseMnemonic = false };
+    private readonly Label _ringkasStok = new() { Dock = DockStyle.Top, AutoSize = true, MinimumSize = new Size(0, 90), Font = new Font("Consolas", 10f), Padding = new Padding(4, 8, 4, 0), UseMnemonic = false };
     private readonly DataGridView _gridStok = Ui.BuatGrid();
 
     private static DateTimePicker Pemilih() => new()
@@ -88,10 +88,11 @@ public class LaporanPanel : PanelDasar
         var grup = new GroupBox { Text = "Barang Terlaris", Dock = DockStyle.Fill, Padding = new Padding(8) };
         grup.Controls.Add(_terlaris);
 
-        var ringkas = new TableLayoutPanel { Dock = DockStyle.Bottom, Height = 170, ColumnCount = 2, RowCount = 1 };
+        var ringkas = new TableLayoutPanel { Dock = DockStyle.Bottom, AutoSize = true, AutoSizeMode = AutoSizeMode.GrowAndShrink, ColumnCount = 2, RowCount = 1 };
         ringkas.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50));
         ringkas.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50));
-        ringkas.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
+        ringkas.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+        grup.MinimumSize = new Size(0, 170);
         ringkas.Controls.Add(_ringkasJual, 0, 0);
         ringkas.Controls.Add(grup, 1, 0);
 

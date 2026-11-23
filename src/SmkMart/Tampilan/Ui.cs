@@ -33,17 +33,46 @@ public class TabElegan : TabControl
     {
         SetStyle(ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint |
                  ControlStyles.OptimizedDoubleBuffer | ControlStyles.ResizeRedraw, true);
-        SizeMode = TabSizeMode.Normal;
-        ItemSize = new Size(0, 38);
-        Padding = new Point(22, 6);
+        SizeMode = TabSizeMode.Fixed;
+        ItemSize = new Size(120, 38);
     }
 
-    // TabControl tidak menskalakan ItemSize/Padding sendiri, jadi diskalakan manual mengikuti DPI.
+    // Lebar tab dihitung dari teks terpanjang (+ jarak) dan tinggi diskalakan mengikuti DPI,
+    // supaya judul tab tidak terpotong / tumpang tindih di skala layar berapa pun.
+    private void HitungUkuranTab()
+    {
+        double skala = DeviceDpi / 96.0;
+        int tinggi = (int)Math.Round(38 * skala);
+        int lebar = (int)Math.Round(110 * skala);
+        foreach (TabPage h in TabPages)
+            lebar = Math.Max(lebar, TextRenderer.MeasureText(h.Text, Font).Width + (int)Math.Round(48 * skala));
+        SizeMode = TabSizeMode.Fixed;
+        ItemSize = new Size(lebar, tinggi);
+        Invalidate();
+    }
+
+    protected override void OnHandleCreated(EventArgs e)
+    {
+        base.OnHandleCreated(e);
+        HitungUkuranTab();
+    }
+
+    protected override void OnFontChanged(EventArgs e)
+    {
+        base.OnFontChanged(e);
+        HitungUkuranTab();
+    }
+
+    protected override void OnDpiChangedAfterParent(EventArgs e)
+    {
+        base.OnDpiChangedAfterParent(e);
+        HitungUkuranTab();
+    }
+
     protected override void ScaleControl(SizeF factor, BoundsSpecified specified)
     {
         base.ScaleControl(factor, specified);
-        ItemSize = new Size(0, (int)Math.Round(ItemSize.Height * factor.Height));
-        Padding = new Point((int)Math.Round(Padding.X * factor.Width), (int)Math.Round(Padding.Y * factor.Height));
+        HitungUkuranTab();
     }
 
     protected override void OnControlAdded(ControlEventArgs e)
@@ -51,6 +80,7 @@ public class TabElegan : TabControl
         base.OnControlAdded(e);
         if (e.Control is TabPage halaman)
         {
+            if (IsHandleCreated) BeginInvoke(new Action(HitungUkuranTab));
             halaman.UseVisualStyleBackColor = false;
             halaman.BackColor = Tema.Latar;
         }

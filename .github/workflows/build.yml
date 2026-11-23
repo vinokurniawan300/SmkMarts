@@ -28,7 +28,7 @@ jobs:
           if ($env:GITHUB_REF -like 'refs/tags/v*') {
             $v = $env:GITHUB_REF_NAME.TrimStart('v')
           } else {
-            $v = '1.0.2'
+            $v = '1.0.3'
           }
           "version=$v" >> $env:GITHUB_OUTPUT
 
