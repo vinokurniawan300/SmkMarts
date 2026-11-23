@@ -4,7 +4,7 @@ using SmkMart.Services;
 
 namespace SmkMart.Tampilan;
 
-public class MainForm : Form
+public class MainForm : FormDasar
 {
     private readonly DataStore _store;
     private readonly Pengguna _user;

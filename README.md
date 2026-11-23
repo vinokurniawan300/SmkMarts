@@ -20,6 +20,11 @@ Tambahan di versi GUI:
 - Pemilih tanggal (tidak perlu mengetik `YYYY-MM-DD`)
 - Laporan penjualan dengan filter tanggal; klik dua kali sebuah transaksi untuk melihat struknya
 - Struk bisa disalin ke clipboard
+- Ukuran jendela & DPI fleksibel (per-monitor DPI, jendela otomatis menyesuaikan layar kecil)
+
+## Riwayat versi
+
+- **1.0.2** - Tampilan mengikuti DPI/skala layar (100%-300%, ganti monitor), jendela tidak melebihi area layar, menu login diperbesar.
 
 ## Akun bawaan (saat pertama kali dijalankan)
 
@@ -45,7 +50,7 @@ Atau buka `SmkMart.sln` di Visual Studio 2022 lalu tekan F5.
 
 Cara cepat di Windows: klik dua kali `BuatInstaller.bat` (otomatis publish + membuat Setup.exe di folder `installer-output`; Inno Setup dipasang lewat winget bila belum ada).
 
-Di GitHub: push tag, mis. `git tag v1.0.1 && git push origin v1.0.1`. GitHub Actions membuat `SmkMart-Setup-1.0.1.exe` di halaman Releases.
+Di GitHub: push tag, mis. `git tag v1.0.2 && git push origin v1.0.2`. GitHub Actions membuat `SmkMart-Setup-1.0.2.exe` di halaman Releases.
 
 Membuat versi rilis manual:
 

@@ -2,7 +2,7 @@ using SmkMart.Models;
 
 namespace SmkMart.Tampilan;
 
-public class StokMenipisDialog : Form
+public class StokMenipisDialog : FormDasar
 {
     public StokMenipisDialog(List<Barang> daftar)
     {

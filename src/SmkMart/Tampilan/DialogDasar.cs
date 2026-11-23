@@ -1,9 +1,10 @@
 namespace SmkMart.Tampilan;
 
-public abstract class DialogDasar : Form
+public abstract class DialogDasar : FormDasar
 {
     protected readonly Button BtnOk;
     protected readonly Button BtnBatal;
+    protected readonly FlowLayoutPanel PanelTombol;
 
     protected DialogDasar(string judul, Size ukuranKlien, string okTeks = "Simpan", string batalTeks = "Batal")
     {
@@ -20,16 +21,16 @@ public abstract class DialogDasar : Form
         BtnOk = Ui.Tombol(okTeks, (s, e) => Konfirmasi(), utama: true, lebar: 110);
         BtnBatal = Ui.Tombol(batalTeks, (s, e) => DialogResult = DialogResult.Cancel, lebar: 100);
 
-        var bawah = new FlowLayoutPanel
+        PanelTombol = new FlowLayoutPanel
         {
             Dock = DockStyle.Bottom,
             Height = 56,
             FlowDirection = FlowDirection.RightToLeft,
             Padding = new Padding(12, 10, 12, 0)
         };
-        bawah.Controls.Add(BtnBatal);
-        bawah.Controls.Add(BtnOk);
-        Controls.Add(bawah);
+        PanelTombol.Controls.Add(BtnBatal);
+        PanelTombol.Controls.Add(BtnOk);
+        Controls.Add(PanelTombol);
 
         AcceptButton = BtnOk;
         CancelButton = BtnBatal;

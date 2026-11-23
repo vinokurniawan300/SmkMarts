@@ -1,6 +1,6 @@
 namespace SmkMart.Tampilan;
 
-public class StrukDialog : Form
+public class StrukDialog : FormDasar
 {
     public StrukDialog(string teks, string judul = "Struk")
     {

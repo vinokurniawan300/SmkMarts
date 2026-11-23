@@ -28,7 +28,7 @@ jobs:
           if ($env:GITHUB_REF -like 'refs/tags/v*') {
             $v = $env:GITHUB_REF_NAME.TrimStart('v')
           } else {
-            $v = '1.0.1'
+            $v = '1.0.2'
           }
           "version=$v" >> $env:GITHUB_OUTPUT
 
@@ -58,7 +58,7 @@ jobs:
 
       - name: Rilis di GitHub (hanya saat tag v*)
         if: startsWith(github.ref, 'refs/tags/v')
-        uses: softprops/action-gh-release@v3
+        uses: softprops/action-gh-release@v2
         with:
           files: installer-output/*.exe
           generate_release_notes: true

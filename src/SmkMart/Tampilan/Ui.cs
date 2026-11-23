@@ -38,6 +38,14 @@ public class TabElegan : TabControl
         Padding = new Point(22, 6);
     }
 
+    // TabControl tidak menskalakan ItemSize/Padding sendiri, jadi diskalakan manual mengikuti DPI.
+    protected override void ScaleControl(SizeF factor, BoundsSpecified specified)
+    {
+        base.ScaleControl(factor, specified);
+        ItemSize = new Size(0, (int)Math.Round(ItemSize.Height * factor.Height));
+        Padding = new Point((int)Math.Round(Padding.X * factor.Width), (int)Math.Round(Padding.Y * factor.Height));
+    }
+
     protected override void OnControlAdded(ControlEventArgs e)
     {
         base.OnControlAdded(e);
@@ -53,6 +61,9 @@ public class TabElegan : TabControl
         var g = e.Graphics;
         g.Clear(Tema.Latar);
         if (TabCount == 0) return;
+
+        int tebalGaris = Math.Max(3, (int)Math.Round(3 * DeviceDpi / 96.0));
+        int inset = (int)Math.Round(10 * DeviceDpi / 96.0);
 
         int dasar = GetTabRect(0).Bottom;
         using (var pena = new Pen(Tema.Garis))
@@ -71,7 +82,7 @@ public class TabElegan : TabControl
             if (aktif)
             {
                 using var kuas = new SolidBrush(Tema.Emas);
-                g.FillRectangle(kuas, r.Left + 10, dasar - 3, r.Width - 20, 3);
+                g.FillRectangle(kuas, r.Left + inset, dasar - tebalGaris, r.Width - 2 * inset, tebalGaris);
             }
         }
     }
@@ -96,9 +107,8 @@ public sealed class BilahPanel : FlowLayoutPanel
     protected override void OnControlAdded(ControlEventArgs e)
     {
         base.OnControlAdded(e);
-        if (e.Control is not { } kontrol) return;
-        kontrol.Anchor = AnchorStyles.Left;
-        kontrol.Margin = new Padding(0, 0, 10, 0);
+        e.Control.Anchor = AnchorStyles.Left;          // tanpa Top/Bottom = rata tengah vertikal
+        e.Control.Margin = new Padding(0, 0, 10, 0);
     }
 }
 
